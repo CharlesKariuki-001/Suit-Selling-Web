@@ -1,0 +1,236 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #121212; /* Dark background */
+    color: #ffffff; /* White text */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  .home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  /* Hero Section */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  height: 80vh; /* Increased height to 80% of viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.cta-button {
+  padding: 15px 30px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #0055af;
+}
+
+/* Hero Image */
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Ensures the image spans the full width */
+  height: 100%; /* Ensures the image spans the full height */
+  object-fit: cover; /* Ensures the image covers the entire area without distortion */
+  object-position: center; /* Centers the image within the container */
+  opacity: 0.5;
+  z-index: 1;
+}
+  
+  /* Featured Suits Section */
+  .section-description {
+    font-size: 1.2rem; /* Slightly larger font size for better readability */
+    color: #ffffff; /* White text for contrast against the dark background */
+    margin-bottom: 30px; /* Space between the title and the suits grid */
+    line-height: 1.8; /* Improved line spacing for readability */
+    max-width: 800px; /* Restrict the width to prevent overly wide text */
+    margin: 0 auto; /* Center-align the paragraph horizontally */
+    text-align: center; /* Center-align the text content */
+    opacity: 0.9; /* Slight transparency for a softer look */
+  }
+
+  .featured-suits-section {
+    padding: 50px 0;
+    background-color: #181818; /* Darker background */
+    text-align: center;
+  }
+  
+  .section-title {
+    font-size: 3rem;
+    margin-bottom: 30px;
+  }
+  
+  .suits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .suit-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .suit-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .suit-image {
+    width: 100%;
+    height: 300px; /* Fixed height for consistent sizing */
+    object-fit: cover; /* Ensures the image fits perfectly */
+    object-position: center; /* Centers the image */
+    border-radius: 10px;
+    transition: opacity 0.3s ease;
+  }
+  
+  .suit-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .suit-card:hover .suit-overlay {
+    opacity: 1;
+  }
+  
+  .suit-info {
+    text-align: left;
+  }
+  
+  .suit-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+    color: #007bff;
+  }
+  
+  .suit-info p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+  }
+  
+  .view-button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .view-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Testimonials Section */
+  .testimonials-section {
+    padding: 50px 0;
+    background-color: #121212;
+    text-align: center;
+  }
+  
+  .testimonial-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .testimonial-card {
+    background-color: #181818;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 400px;
+    margin: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .testimonial-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .testimonial-card p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+  }
+  
+  .author {
+    font-style: italic;
+    color: #007bff;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .hero-content h1 {
+      font-size: 2.5rem;
+    }
+  
+    .hero-content p {
+      font-size: 1.2rem;
+    }
+  
+    .section-title {
+      font-size: 2.5rem;
+    }
+  
+    .suit-image {
+      height: 150px; /* Adjust height for smaller screens */
+    }
+  
+    .testimonial-card {
+      max-width: 100%;
+    }
+  }

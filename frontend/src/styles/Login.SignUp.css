@@ -1,0 +1,220 @@
+/* Style for the main container */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  width: 90%;
+  max-width: 400px;
+  background-color: rgb(41, 40, 40);
+  color: white;
+  border-radius: 20px;
+  padding: 30px;
+  transition: transform 0.3s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Back arrow styling */
+.back-arrow {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+}
+
+.back-arrow:hover {
+  transform: scale(1.2);
+}
+
+/* User icon and login text container */
+.user-login-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.user-icon i {
+  font-size: 40px;
+  color: #fff;
+  margin-right: 12px;
+}
+
+.login-text {
+  font-size: 26px;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Login Form */
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+  margin: 15px 0;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background: transparent;
+  border: none;
+  color: white;
+  outline: none;
+}
+
+.input-container label {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+/* Move label up when input has value */
+.input-container input:focus ~ label,
+.input-container .filled {
+  top: 5px;
+  font-size: 12px;
+  color: #4CAF50;
+}
+
+/* Underline Effect */
+.underline {
+  height: 2px;
+  width: 100%;
+  background-color: white;
+  margin-top: 5px;
+}
+
+/* Forgot Password */
+.forgot-password {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.forgot-password-link {
+  color: blue;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+}
+
+/* SIGN IN BUTTON */
+.sign-in-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+}
+
+.sign-in-button:hover {
+  background-color: #4CAF50;
+  color: white;
+  transform: scale(1.05);
+}
+
+.sign-in-button:active {
+  transform: scale(0.95);
+}
+
+/* OR DIVIDER */
+.or-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 0;
+  width: 100%;
+}
+
+.or-divider .line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: white;
+  margin: 0 10px;
+}
+
+.or-divider span {
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* GOOGLE LOGIN BUTTON */
+.google-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: black;
+  border: 2px solid white;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Google Icon */
+.google-icon {
+  font-size: 18px;
+  color: white;
+}
+
+/* Hover Effect */
+.google-button:hover {
+  background-color: white;
+  color: black;
+  transform: scale(1.05);
+}
+
+.google-button:hover .google-icon {
+  color: black;
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .login-container {
+      width: 90%;
+      padding: 20px;
+      height: 60vh;
+  }
+
+  .login-text {
+      font-size: 24px;
+  }
+
+  .user-icon i {
+      font-size: 35px;
+  }
+}

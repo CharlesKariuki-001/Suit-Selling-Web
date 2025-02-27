@@ -1,0 +1,28 @@
+/* Footer Styling */
+.footer {
+    background-color: #121212; /* Dark background to match the site theme */
+    color: #ffffff; /* White text for contrast */
+    text-align: center; /* Center-align the content */
+    padding: 20px 0; /* Add vertical padding for spacing */
+    margin-top: 20px; /* Space between the footer and the content above */
+    position: relative; /* Ensure proper positioning */
+    border-top: 1px solid #333; /* Subtle border for separation */
+  }
+  
+  .footer p {
+    font-size: 14px; /* Smaller font size for footer text */
+    margin: 0; /* Remove default margin */
+    line-height: 1.5; /* Improve readability */
+    opacity: 0.9; /* Slight transparency for a softer look */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .footer {
+      padding: 15px 0; /* Reduce padding for smaller screens */
+    }
+  
+    .footer p {
+      font-size: 12px; /* Reduce font size for better fit on mobile */
+    }
+  }

@@ -1,0 +1,88 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navbar Styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #121212; /* Dark background to match your site */
+  padding: 15px 30px;
+  color: white;
+  position: fixed; /* Sticky navbar */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Ensure it stays above other content */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+/* Logo Styling */
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  color: #ff6f61; /* Vibrant coral color for the logo */
+}
+
+.logo i {
+  margin-right: 10px;
+  font-size: 28px;
+}
+
+/* Navigation Links Styling */
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease, transform 0.3s ease;
+  font-size: 16px;
+}
+
+.nav-link i {
+  margin-right: 5px;
+  font-size: 18px;
+}
+
+.nav-link:hover {
+  color: #ff6f61; /* Coral hover effect */
+  transform: translateY(-5px); /* Slight lift on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .logo i {
+    font-size: 24px;
+  }
+
+  .nav-links {
+    font-size: 14px;
+  }
+
+  .nav-link i {
+    font-size: 16px;
+  }
+}

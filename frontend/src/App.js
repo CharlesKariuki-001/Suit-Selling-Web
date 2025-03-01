@@ -1,28 +1,38 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+
+// Importing pages/components
 import Login from './Pages/Login';
 import SignUp from './Pages/SignUp';
 import Home from './Pages/Home';
-import About from './Pages/About'; // Import the About component
-import Layout from './Pages/Layout'; // Fixed the casing issue
+import About from './Pages/About'; // About page component
+import Contact from './Pages/Contact'; // Contact page component (create this if not already created)
+import Layout from './Pages/Layout'; // Layout component for shared navigation/footer
+
 
 function App() {
   return (
     <Router>
       <div className="App">
+        {/* Define routes */}
         <Routes>
           {/* Main layout with nested routes */}
           <Route path="/" element={<Layout />}>
-            {/* Index route (default route when visiting '/') */}
+            {/* Default route (home) */}
             <Route index element={<Home />} />
+            
             {/* About Us route */}
             <Route path="about" element={<About />} />
-            {/* Contact route (you can create this later) */}
-            <Route path="contact" element={<h1>Contact Page</h1>} />
+            
+            {/* Contact route */}
+            <Route path="contact" element={<Contact />} />
+            
             {/* Login and Signup routes */}
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
+            
+            {/* Nested routes can be added here if needed */}
           </Route>
         </Routes>
       </div>

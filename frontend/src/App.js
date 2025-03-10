@@ -9,6 +9,8 @@ import Home from './Pages/Home';
 import About from './Pages/About'; // About page component
 import Contact from './Pages/Contact'; // Contact page component (create this if not already created)
 import Layout from './Pages/Layout'; // Layout component for shared navigation/footer
+import Explore from './Pages/Explore';
+
 
 
 function App() {
@@ -19,8 +21,12 @@ function App() {
         <Routes>
           {/* Main layout with nested routes */}
           <Route path="/" element={<Layout />}>
+
             {/* Default route (home) */}
             <Route index element={<Home />} />
+
+            {/* Explore route */}
+            <Route path="Explore" element={<Explore/>} />
             
             {/* About Us route */}
             <Route path="about" element={<About />} />

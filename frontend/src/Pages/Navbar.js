@@ -18,6 +18,11 @@ function Navbar() {
           </Link>
         </li>
         <li>
+          <Link to="/explore" className="nav-link">
+            <i className="fas fa-home"></i> Explore
+          </Link>
+        </li>
+        <li>
           <Link to="/about" className="nav-link">
             <i className="fas fa-info-circle"></i> About Us
           </Link>

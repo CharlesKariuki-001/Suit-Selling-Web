@@ -1,99 +1,160 @@
-import "../styles/Login.SignUp.css";  // Reuse the same CSS for simplicity
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "../styles/Login.SignUp.css";
 
-const SignUp = () => {
-    const [phone, setPhone] = useState("");
+const Signup = ({ onClose, onSwitchToLogin }) => {
+    const [fullname, setFullname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [error, setError] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError("");
+
+        if (!fullname || !email || !password || !confirmPassword) {
+            setError("All fields are required.");
+            return;
+        }
+
+        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+            setError("Please enter a valid email.");
+            return;
+        }
+
+        if (password.length < 8) {
+            setError("Password must be at least 8 characters long.");
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            setError("Passwords do not match.");
+            return;
+        }
+
+        try {
+            const response = await fetch("http://localhost:8000/api/users/register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ fullname, email, password }),
+            });
+
+            const data = await response.json();
+            if (!response.ok) {
+                setError(data.message || "Signup failed.");
+                return;
+            }
+
+            navigate("/login");
+        } catch (err) {
+            setError("Something went wrong. Try again.");
+        }
+    };
 
     return (
-        <div className="login-container">
-            {/* Back Arrow */}
-            <Link to="/" className="back-arrow"> ← </Link>
+        <div className="modal-overlay">
+            <div className="signup-container">
+                {/* Close Button */}
+                <button className="close-modal" onClick={onClose}>
+                    ×
+                </button>
 
-            {/* User Icon & Sign-Up Title */}
-            <div className="user-login-container">
-                <div className="user-icon">
-                    <i className="fa fa-user" aria-hidden="true"></i>
-                </div>
-                <span className="login-text">Sign Up</span>
-            </div>
-
-            {/* Sign Up Form */}
-            <form className="login-form">
-                {/* Phone Number Field with Kenya Country Code */}
-                <div className="input-container">
-                    <input 
-                        type="tel" 
-                        name="phone" 
-                        value={phone} 
-                        onChange={(e) => setPhone(e.target.value)} 
-                        required 
-                        placeholder="+254" 
-                    />
-                    <label className={phone ? "filled" : ""}>Phone Number</label>
-                    <div className="underline"></div>
+                {/* User Icon and Text */}
+                <div className="user-signup-container">
+                    <div className="user-icon">
+                        <i className="fa fa-user-plus" aria-hidden="true"></i>
+                    </div>
+                    <span className="signup-text">Sign Up</span>
                 </div>
 
-                {/* Email Field */}
-                <div className="input-container">
-                    <input 
-                        type="email" 
-                        name="email" 
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)} 
-                        required 
-                    />
-                    <label className={email ? "filled" : ""}>Email</label>
-                    <div className="underline"></div>
-                </div>
+                {/* Error Message */}
+                {error && <p className="error-message">{error}</p>}
 
-                {/* Create Password Field */}
-                <div className="input-container">
-                    <input 
-                        type="password" 
-                        name="password" 
-                        value={password} 
-                        onChange={(e) => setPassword(e.target.value)} 
-                        required 
-                    />
-                    <label className={password ? "filled" : ""}>Create Password</label>
-                    <div className="underline"></div>
-                </div>
+                {/* Signup Form */}
+                <form className="signup-form" onSubmit={handleSubmit}>
+                    {/* Full Name Field */}
+                    <div className="input-container">
+                        <input
+                            type="text"
+                            value={fullname}
+                            onChange={(e) => setFullname(e.target.value)}
+                            required
+                        />
+                        <label className={fullname ? "filled" : ""}>Full Name</label>
+                    </div>
 
-                {/* Confirm Password Field */}
-                <div className="input-container">
-                    <input 
-                        type="password" 
-                        name="confirmPassword" 
-                        value={confirmPassword} 
-                        onChange={(e) => setConfirmPassword(e.target.value)} 
-                        required 
-                    />
-                    <label className={confirmPassword ? "filled" : ""}>Confirm Password</label>
-                    <div className="underline"></div>
-                </div>
+                    {/* Email Field */}
+                    <div className="input-container">
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                        <label className={email ? "filled" : ""}>Email</label>
+                    </div>
 
-                {/* Sign Up Button */}
-                <button className="sign-in-button">SIGN UP</button>
+                    {/* Password Field */}
+                    <div className="input-container">
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                        <label className={password ? "filled" : ""}>Password</label>
+                        <button
+                            type="button"
+                            className="show-password-button"
+                            onClick={() => setShowPassword(!showPassword)}
+                        >
+                            {showPassword ? "Hide" : "Show"}
+                        </button>
+                    </div>
+
+                    {/* Confirm Password Field */}
+                    <div className="input-container">
+                        <input
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            required
+                        />
+                        <label className={confirmPassword ? "filled" : ""}>Confirm Password</label>
+                    </div>
+
+                    {/* Sign Up Button */}
+                    <button type="submit" className="sign-up-button">
+                        SIGN UP
+                    </button>
+                </form>
 
                 {/* OR Divider */}
                 <div className="or-divider">
                     <div className="line"></div>
-                    <span>or</span>
+                    <span>OR</span>
                     <div className="line"></div>
                 </div>
 
-                {/* Google Login Button */}
-                <button className="google-button">
-                    <i className="fab fa-google google-icon"></i>
-                    Google
+                {/* Google Sign Up Button */}
+                <button className="google-button" onClick={() => console.log("Signing up with Google")}>
+                    <i className="fa-brands fa-google google-icon"></i>
+                    Sign Up with Google
                 </button>
-            </form>
+
+                {/* Login Option */}
+                <div className="login-option">
+                    Already have an account?{" "}
+                    <button className="switch-to-login" onClick={onSwitchToLogin}>
+                        Login here
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };
 
-export default SignUp;
+export default Signup;

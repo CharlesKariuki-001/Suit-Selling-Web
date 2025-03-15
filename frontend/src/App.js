@@ -1,19 +1,21 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
 
-// Importing pages/components
-import Login from './Pages/Login';
-import SignUp from './Pages/SignUp';
-import Home from './Pages/Home';
-import About from './Pages/About'; // About page component
-import Contact from './Pages/Contact'; // Contact page component (create this if not already created)
-import Layout from './Pages/Layout'; // Layout component for shared navigation/footer
-import Explore from './Pages/Explore';
-
-
+// Importing pages
+import Home from "./Pages/Home";
+import About from "./Pages/About";
+import Contact from "./Pages/Contact";
+import Layout from "./Pages/Layout";
+import Explore from "./Pages/Explore";
+import LoginModal from "./Pages/Login"; // Updated to act as a modal
+import SignUpModal from "./Pages/SignUp"; // Updated to act as a modal
 
 function App() {
+  // State for managing modals
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(true); // Open login modal by default
+  const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
+
   return (
     <Router>
       <div className="App">
@@ -21,26 +23,48 @@ function App() {
         <Routes>
           {/* Main layout with nested routes */}
           <Route path="/" element={<Layout />}>
-
             {/* Default route (home) */}
-            <Route index element={<Home />} />
+            <Route
+              index
+              element={
+                <Home
+                  isLoginModalOpen={isLoginModalOpen}
+                  setIsLoginModalOpen={setIsLoginModalOpen}
+                  setIsSignUpModalOpen={setIsSignUpModalOpen}
+                />
+              }
+            />
 
             {/* Explore route */}
-            <Route path="Explore" element={<Explore/>} />
-            
+            <Route path="explore" element={<Explore />} />
+
             {/* About Us route */}
             <Route path="about" element={<About />} />
-            
+
             {/* Contact route */}
             <Route path="contact" element={<Contact />} />
-            
-            {/* Login and Signup routes */}
-            <Route path="login" element={<Login />} />
-            <Route path="signup" element={<SignUp />} />
-            
-            {/* Nested routes can be added here if needed */}
           </Route>
         </Routes>
+
+        {/* Modals */}
+        {isLoginModalOpen && (
+          <LoginModal
+            onClose={() => setIsLoginModalOpen(false)}
+            onSwitchToSignUp={() => {
+              setIsLoginModalOpen(false);
+              setIsSignUpModalOpen(true);
+            }}
+          />
+        )}
+        {isSignUpModalOpen && (
+          <SignUpModal
+            onClose={() => setIsSignUpModalOpen(false)}
+            onSwitchToLogin={() => {
+              setIsSignUpModalOpen(false);
+              setIsLoginModalOpen(true);
+            }}
+          />
+        )}
       </div>
     </Router>
   );

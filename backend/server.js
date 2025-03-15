@@ -1,20 +1,34 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = 8000;
-const productRoutes = require('./routes/productRoutes');
+const db = require('./database');
+const userRoutes = require('./routes/userRoutes');
 
 // Middleware to parse JSON requests
 app.use(express.json());
+app.use(cors());
 
-// Use product routes for API endpoints
-app.use('/api', productRoutes);  // Corrected to '/api' for routing to the products
+// Check if users table exists
+db.get(`SELECT name FROM sqlite_master WHERE type='table' AND name='users'`, (err, row) => {
+    if (err) {
+        console.error("❌ Error checking users table:", err.message);
+    } else if (!row) {
+        console.error("❌ Users table does not exist!");
+    } else {
+        console.log("✅ Users table exists.");
+    }
+});
 
 // Home route
 app.get('/', (req, res) => {
-    res.send('Welcome to the Suit selling Web API');
+    res.send('Welcome to the Suit Selling Web API');
 });
 
-// Start the Server
+// Use user routes
+app.use('/api/users', userRoutes);
+
+// Start the server
 app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
+    console.log(`✅ Server running on http://localhost:${port}`);
 });

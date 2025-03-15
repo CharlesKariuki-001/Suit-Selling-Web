@@ -1,58 +1,77 @@
-/* Style for the main container */
-.login-container {
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Common Container for Login and Signup */
+.auth-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 90vh;
-  width: 90%;
-  max-width: 400px;
-  background-color: rgb(41, 40, 40);
+  width: 100%;
+  max-width: 500px;
+  background-color: #292828;
   color: white;
   border-radius: 20px;
-  padding: 30px;
-  transition: transform 0.3s ease;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  padding: 40px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Back arrow styling */
-.back-arrow {
+.auth-container:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  transform: scale(1.02);
+}
+
+/* Close Button */
+.close-modal {
   position: absolute;
-  top: 15px;
-  left: 20px;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
   font-size: 24px;
   color: white;
-  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-.back-arrow:hover {
+.close-modal:hover {
   transform: scale(1.2);
 }
 
-/* User icon and login text container */
-.user-login-container {
+/* User Icon and Text */
+.user-auth-container {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
 }
 
 .user-icon i {
-  font-size: 40px;
-  color: #fff;
+  font-size: 48px; /* Larger icon */
+  color: #4CAF50;
   margin-right: 12px;
 }
 
-.login-text {
-  font-size: 26px;
-  color: #fff;
+.auth-text {
+  font-size: 32px; /* Larger text */
+  color: white;
   font-weight: bold;
 }
 
-/* Login Form */
-.login-form {
+/* Form Styling */
+.auth-form {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -62,43 +81,67 @@
 .input-container {
   position: relative;
   width: 100%;
-  margin: 15px 0;
+  margin: 20px 0; /* Increased spacing */
 }
 
 .input-container input {
   width: 100%;
-  padding: 10px;
-  font-size: 16px;
+  padding: 14px; /* Increased padding */
+  font-size: 18px; /* Larger font */
   background: transparent;
-  border: none;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px; /* Rounded corners */
   color: white;
   outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-container input:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
 }
 
 .input-container label {
   position: absolute;
   top: 50%;
-  left: 10px;
+  left: 12px;
   transform: translateY(-50%);
-  color: white;
-  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 18px; /* Larger font */
   transition: all 0.3s ease;
+  pointer-events: none;
 }
 
-/* Move label up when input has value */
 .input-container input:focus ~ label,
 .input-container .filled {
   top: 5px;
-  font-size: 12px;
+  font-size: 14px;
   color: #4CAF50;
 }
 
-/* Underline Effect */
-.underline {
-  height: 2px;
-  width: 100%;
-  background-color: white;
-  margin-top: 5px;
+/* Error Message */
+.error-message {
+  color: #ff4d4d;
+  font-size: 16px; /* Larger font */
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Show Password Button */
+.show-password-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #4CAF50;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.show-password-button:hover {
+  text-decoration: underline;
 }
 
 /* Forgot Password */
@@ -109,68 +152,70 @@
 }
 
 .forgot-password-link {
-  color: blue;
+  color: #4CAF50;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16px; /* Larger font */
+  transition: color 0.3s ease;
 }
 
 .forgot-password-link:hover {
   text-decoration: underline;
+  color: #3a9e40;
 }
 
-/* SIGN IN BUTTON */
-.sign-in-button {
+/* Submit Buttons (Sign In/Sign Up) */
+.submit-button {
   width: 100%;
-  padding: 12px;
-  font-size: 18px;
+  padding: 14px; /* Increased padding */
+  font-size: 20px; /* Larger font */
   font-weight: bold;
   color: black;
   background-color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px; /* Rounded corners */
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 20px;
   transition: all 0.3s ease-in-out;
   box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
 }
 
-.sign-in-button:hover {
+.submit-button:hover {
   background-color: #4CAF50;
   color: white;
   transform: scale(1.05);
 }
 
-.sign-in-button:active {
+.submit-button:active {
   transform: scale(0.95);
 }
 
-/* OR DIVIDER */
+/* OR Divider */
 .or-divider {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 15px 0;
+  margin: 20px 0;
   width: 100%;
 }
 
 .or-divider .line {
   flex-grow: 1;
   height: 1px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.5);
   margin: 0 10px;
 }
 
 .or-divider span {
   color: white;
-  font-size: 14px;
+  font-size: 16px; /* Larger font */
   font-weight: bold;
 }
 
-/* GOOGLE LOGIN BUTTON */
+/* Google Login Button */
 .google-button {
   width: 100%;
-  padding: 12px;
-  font-size: 16px;
+  padding: 14px; /* Increased padding */
+  font-size: 18px; /* Larger font */
   font-weight: bold;
   color: white;
   background-color: black;
@@ -185,13 +230,11 @@
   margin-top: 10px;
 }
 
-/* Google Icon */
 .google-icon {
-  font-size: 18px;
+  font-size: 20px; /* Larger icon */
   color: white;
 }
 
-/* Hover Effect */
 .google-button:hover {
   background-color: white;
   color: black;
@@ -202,19 +245,44 @@
   color: black;
 }
 
-/* Mobile Responsive */
+/* Switch Between Login/Signup */
+.switch-option {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 16px; /* Larger font */
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.switch-link {
+  color: #4CAF50;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.switch-link:hover {
+  text-decoration: underline;
+  color: #3a9e40;
+}
+
+/* Responsive Design */
 @media (max-width: 480px) {
-  .login-container {
-      width: 90%;
-      padding: 20px;
-      height: 60vh;
+  .auth-container {
+    width: 90%;
+    padding: 30px; /* Adjusted for mobile */
+    max-width: none;
   }
 
-  .login-text {
-      font-size: 24px;
+  .auth-text {
+    font-size: 28px; /* Slightly smaller for mobile */
   }
 
   .user-icon i {
-      font-size: 35px;
+    font-size: 40px; /* Slightly smaller for mobile */
+  }
+
+  .submit-button, .google-button {
+    font-size: 16px;
+    padding: 12px;
   }
 }

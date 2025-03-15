@@ -55,7 +55,7 @@ const suitsData = {
   ],
 };
 
-function Home() {
+function Home( {isLoginModalOpen, setLoginModalOpen, setSignUpModalOpen} ) {
   return (
     <div className="home-container">
       {/* Hero Section */}
@@ -69,10 +69,13 @@ function Home() {
         <div className="hero-content">
           <h1>Welcome to Suit Store</h1>
           <p>Discover the art of elegance with our exclusive collection.</p>
-          <button className="cta-button">Explore Now</button>
-        </div>
-      </section>
-
+          <button classNme="cta-button"
+          onClick={()  =>setIsLoginModalOpen(true)}
+          >
+            Get Started
+          </button>
+          </div>
+          </section>
       {/* Featured Suits Section */}
       <section className="featured-suits-section">
         <h2 className="section-title">Featured Suits</h2>
